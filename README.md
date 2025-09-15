@@ -13,15 +13,15 @@ O fluxo de dados segue a arquitetura abaixo, onde o Apache Airflow orquestra tod
 ```mermaid
 graph TD;
     subgraph "Fontes de Dados"
-        A(fa:fa-file-csv CSV);
-        B(fa:fa-database SQL - PostgreSQL);
+        A[fa:fa-file-csv CSV];
+        B[fa:fa-database SQL];
     end
 
-    subgraph "Pipeline Orquestrado por Apache Airflow"
+    subgraph "Pipeline Apache Airflow"
         C{Extração};
-        D[FileSystem Local<br><i>(Área de Stage)</i>];
+        D["FileSystem Local<br>(Área de Stage)"];
         E{Carregamento};
-        F(fa:fa-warehouse Data Warehouse<br><i>PostgreSQL</i>);
+        F[fa:fa-warehouse "Data Warehouse<br>(PostgreSQL)"];
     end
 
     A -- "transacoes.csv" --> C;
