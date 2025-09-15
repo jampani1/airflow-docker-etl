@@ -1,0 +1,5 @@
+# Versões compatíveis com o Python 3.8 do Airflow 2.8.4
+apache-airflow-providers-postgres==5.5.1
+pandas==1.5.3                                   # estava usando 2.2.2 que funciona c python 3.9 apenas
+psycopg2-binary==2.9.9
+SQLAlchemy>=1.4.0,<2.0.0                        # limite pois 2.0.0 só funciona com python 3.9

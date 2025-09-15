@@ -1,0 +1,27 @@
+# Arquivos de ambiente com segredos
+# MUITO IMPORTANTE: Nunca envie senhas e chaves para o GitHub!
+.env
+
+# Pastas de dados geradas pelos contêineres do banco de dados
+# Elas serão recriadas automaticamente ao rodar o docker-compose up
+airflow_db_data/
+banvic_db_data/
+
+# Arquivos de saída gerados pela execução do pipeline
+data_output/
+
+# Arquivos de cache e compilados do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Arquivos específicos de ambientes virtuais (caso você crie um novamente)
+airflow_env/
+venv/
+.venv/
+
+# Arquivos específicos de sistema operacional e editores
+.DS_Store
+.vscode/

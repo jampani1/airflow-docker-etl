@@ -1,0 +1,47 @@
+1. Pré-requisitos:
+	Docker e Docker Compose previamente instalados;
+
+2. Estruturação de arquivos do projeto:
+	/opt/airflow/
+
+		dags/
+			banvic_pipline.py
+
+		data_source/
+			transações.csv
+
+		data output/
+
+3. Inicialize o ambiente:
+	docker-compose up -d	#inicializa os containers
+	docker os				#verifica se os containers estão rodando
+	
+4. Configuração da conexão com o Airflow:
+	Para permitir que o DAG acesse o PostgreSQL, pode-se configurar a conexão via Airflow Web UI:
+	Acesse https://localhost:8080, vá em Admin > Connections;
+	Clique em + para uma nova conexão e configure os campos, conforme abaixo
+		Campo	Valor
+		Conn Id	banvic_db_conn
+		Conn Type	Postgres
+		Host	banvic_db
+		Schema	banvic
+		Login	data_engineer
+		Password	v3rysecur&pa
+		Port	5432
+
+5. Preparar o DB para primeira execução:
+	docker exec -it postgres psql -U data_engineer -d banvic
+	(OPCIONAL - limpar schemas antigos antes de testar) DROP SCHEMA IF EXISTS dw CASCADE;
+
+6. Execução do DAG
+	No Airflow Web UI, vá em DAG e ative banvic_pipeline
+	Clique em Trigger DAG para executar manualmente
+
+7. Verificação pós execução
+	\c banvic		# entra no DB banvic
+	\dn          		# lista os schemas
+	\dt dw.*    		# lista as tabelas dentro do schema dw (nosso Data Warehouse)
+
+8. (OPCIONAL) Reinicialização do ambiente
+	docker-compose down		# "desliga" os containers
+	docker-compose up -d		# "liga" os containers
