@@ -11,24 +11,24 @@ Todo o ambiente foi desenvolvido utilizando Docker e Docker Compose para garanti
 O fluxo de dados segue a arquitetura abaixo, onde o Apache Airflow orquestra todo o processo de extração dos dados das fontes, o armazenamento temporário em um FileSystem local e o carregamento final no Data Warehouse em PostgreSQL.
 
 ```mermaid
-graph TD;
-    subgraph "Fontes de Dados"
-        A[fa:fa-file-csv CSV];
-        B[fa:fa-database SQL];
+graph TD
+    subgraph Fontes de Dados
+        CSV["fa:fa-file-csv CSV"]
+        SQL["fa:fa-database SQL"]
     end
 
     subgraph "Pipeline Apache Airflow"
-        C{Extração};
-        D["FileSystem Local<br>(Área de Stage)"];
-        E{Carregamento};
-        F[fa:fa-warehouse "Data Warehouse<br>(PostgreSQL)"];
+        Extracao{"Extração"}
+        FileSystem["FileSystem Local <br/> (Área de Stage)"]
+        Carregamento{"Carregamento"}
+        DW["fa:fa-warehouse Data Warehouse <br/> (PostgreSQL)"]
     end
 
-    A -- "transacoes.csv" --> C;
-    B -- "Tabelas do ERP" --> C;
-    C -- "Dados extraídos em CSV" --> D;
-    D -- "Arquivos diários" --> E;
-    E -- "Carga idempotente" --> F;
+    CSV --> Extracao
+    SQL --> Extracao
+    Extracao -- "Dados extraídos" --> FileSystem
+    FileSystem -- "Arquivos diários" --> Carregamento
+    Carregamento -- "Carga idempotente" --> DW
 ```
 
 ## 🛠️ Tecnologias Utilizadas
