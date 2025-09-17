@@ -1,8 +1,8 @@
-# Desafio de Engenharia de Dados: Pipeline ETL para o Banco BanVic
+# Desafio de Engenharia de Dados: Pipeline ETL
 
 ## Introdução
 
-Este projeto é a minha solução para o desafio de engenharia de dados proposto, que simula a criação de um pipeline de extração, transformação e carga (ETL) para o banco fictício BanVic. O objetivo é extrair dados de múltiplas fontes (um banco de dados SQL e um arquivo CSV), centralizá-los e carregá-los em um Data Warehouse para futuras análises.
+Este projeto é a minha solução para um desafio de engenharia de dados que simula a criação de um pipeline de extração, transformação e carga (ETL) para um banco fictício. O objetivo é extrair dados de múltiplas fontes (um banco de dados SQL e um arquivo CSV), centralizá-los e carregá-los em um Data Warehouse para futuras análises.
 
 Todo o ambiente foi desenvolvido utilizando Docker e Docker Compose para garantir a **reprodutibilidade**, um requisito fundamental do desafio.
 
